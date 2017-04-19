@@ -1,0 +1,32 @@
+import { IDrawable } from "../entities/IDrawable";
+import { IElement } from "../entities/IElement";
+import { IOriented, Orientation } from "../entities/IOriented";
+import { VirtualElement } from "./VirtualElement";
+export declare class Element implements IElement, IDrawable, IOriented {
+    private _element;
+    private _virtual;
+    private _factual;
+    private _initial;
+    private _movable;
+    private _orientation;
+    constructor(id: string);
+    get(): HTMLElement;
+    private set(id);
+    readonly element: HTMLElement;
+    readonly virtual: VirtualElement;
+    readonly initial: VirtualElement;
+    readonly factual: VirtualElement;
+    readonly movable: VirtualElement;
+    readonly children: Array<HTMLElement>;
+    orientation: Orientation;
+    readonly id: string;
+    height: string;
+    width: string;
+    readonly overflow: string;
+    readonly float: string;
+    attr(name: string): string;
+    draw(): void;
+    setup(): void;
+    private drawOverflow();
+    private drawFloat();
+}

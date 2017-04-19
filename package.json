@@ -1,0 +1,37 @@
+{
+  "name": "layout-core",
+  "version": "0.1.0",
+  "description": "The core layout engine for layout-framework",
+  "author": "James Ehly",
+  "license": "MIT",
+  "main": "dist/layout.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf ./dist && webpack && uglifyjs ./dist/layout.js -c -m -o ./dist/layout.min.js --source-map ./dist/layout.min.js.map --comments /Copyright/",
+    "docs": "typedoc --out docs/api/ src/js/",
+    "preversion": "npm test",
+    "serve": "webpack-dev-server --open --hot",
+    "start": "npm run serve",
+    "test": "karma start"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.5.43",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "jasmine": "^2.5.3",
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-typescript": "^3.0.0-beta.2",
+    "rimraf": "^2.6.1",
+    "ts-loader": "^2.0.0",
+    "typedoc": "^0.5.7",
+    "typescript": "^2.1.5",
+    "uglifyjs": "^2.4.10",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  },
+  "dependencies": {
+    "lie-ts": "^3.1.6"
+  }
+}

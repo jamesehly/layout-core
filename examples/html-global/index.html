@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD"
+        crossorigin="anonymous">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        #header {
+            background: #000;
+            color: #FFF;
+        }
+        
+        #header a {
+            color: #FFF;
+        }
+        
+        #header .pure-menu .pure-menu-list>li>a {
+            line-height: 60px;
+            height: 60px;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        #header .pure-menu .pure-menu-list>li>a:hover {
+            background: #333;
+        }
+        
+        #header .pure-menu .pure-menu-list>li>ul>li>a {
+            background: #999;
+        }
+        
+        #brand {
+            font-size: 24px;
+            line-height: 60px;
+            padding: 0 16px;
+            float: left;
+        }
+        
+        #sidebar {
+            background: #DDD;
+        }
+        
+        #sidebar-footer {
+            background: #CCC;
+        }
+        
+        #detail-content {
+            background: #EEE;
+            border-left: 1px solid #DDD;
+        }
+        
+        #body-content {
+            padding: 16px;
+            overflow: auto!important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-layout" data-layout="VerticalLayout">
+        <div id="header" data-size="60px" data-overflow="visible">
+            <div id="brand">HTML Library Example</div>
+            <div class="pure-menu pure-menu-horizontal">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+                    <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                        <a href="#" id="menuLink1" class="pure-menu-link">Dropdown</a>
+                        <ul class="pure-menu-children">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Item 1</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Item 2</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Item 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-layout" data-layout="HorizontalLayout">
+                <div id="sidebar" data-size="300px">
+                    <div id="sidebar-layout">
+                        <div id="sidebar-content"></div>
+                        <div id="sidebar-footer" data-size="60px" data-overflow="visible"></div>
+                    </div>
+                </div>
+                <div id="body-content">
+                    <a href="#" class="pure-button" onclick="po.toggleDetails()">Click me to toggle the detail column</a>
+                </div>
+                <div id="detail-content" data-size="0px"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/dist/layout.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var layout = new _layout.Api();
+        layout.add("main-layout");
+        layout.add("body-layout", "HorizontalLayout");
+        layout.add("sidebar-layout");
+        layout.start();
+
+        var po = {
+            toggleDetails: function () {
+                po.detailsIsOpen = !po.detailsIsOpen;
+                if (po.detailsIsOpen) {
+                    po.openDetails();
+                } else {
+                    po.closeDetails();
+                }
+            },
+            openDetails: function () {
+                layout.set("detail-content", "width", "600px");
+                layout.animate(100);
+            },
+            closeDetails: function () {
+                layout.close("detail-content", 100);
+            }
+        }
+    </script>
+</body>
+
+</html>
