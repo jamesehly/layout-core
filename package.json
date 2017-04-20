@@ -4,12 +4,13 @@
   "description": "The core layout engine for layout-framework",
   "author": "James Ehly",
   "license": "MIT",
-  "main": "dist/layout.js",
+  "main": "dist/layout-core.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf ./dist && webpack && uglifyjs ./dist/layout.js -c -m -o ./dist/layout.min.js --source-map ./dist/layout.min.js.map --comments /Copyright/",
+    "build": "rimraf ./dist && webpack && uglifyjs ./dist/layout-core.js -c -m -o ./dist/layout-core.min.js --source-map ./dist/layout-core.min.js.map --comments /Copyright/",
     "docs": "typedoc --out docs/api/ src/js/",
     "preversion": "npm test",
+    "release": "standard-version",
     "serve": "webpack-dev-server --open --hot",
     "start": "npm run serve",
     "test": "karma start"
@@ -24,6 +25,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-typescript": "^3.0.0-beta.2",
     "rimraf": "^2.6.1",
+    "standard-version": "^4.0.0",
     "ts-loader": "^2.0.0",
     "typedoc": "^0.5.7",
     "typescript": "^2.1.5",

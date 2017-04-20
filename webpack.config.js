@@ -5,13 +5,13 @@ var PACKAGE = require('./package.json');
 
 module.exports = {
     entry: {
-        'dist/layout.js': './src/index.ts'
+        'dist/layout-core.js': './src/index.ts'
     },
     output: {
         path: path.resolve(__dirname),
         filename: '[name]',
         libraryTarget: 'umd',
-        library: '_layout'
+        library: '_layout_core'
     },
     resolve: {
         modules: [path.resolve(__dirname, '/src'), 'node_modules/'],

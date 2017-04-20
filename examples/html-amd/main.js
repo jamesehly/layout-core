@@ -1,5 +1,5 @@
 define( function (require) {
-    var _layout = require('dist/layout.min');
+    var _layout = require('dist/layout-core.min');
 
     var layout = new _layout.Api();
     layout.add("main-layout");
