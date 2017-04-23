@@ -10,10 +10,10 @@ describe('LayoutAPI Nested Layout Animations Unit Tests', () => {
         layout = new Api();
         let fixture = `
         <div id="parent-element" style="height:400px;width:400px" style="background:#CCC">
-            <div id='layout-element-1' style="background:#DDD">
+            <div id='layout-element-1' data-layout="VerticalLayout" style="background:#DDD">
                 <div id="el1.1" data-size="100px" style="background:red"></div>
                 <div id="el1.2">
-                    <div id='layout-element-2' style="background:#EEE">
+                    <div id='layout-element-2' data-layout="HorizontalLayout" style="background:#EEE">
                         <div id="el2.1" data-size="100px" style="background:yellow"></div>
                         <div id="el2.2"></div>
                         <div id="el2.3" data-size="100px" style="background:green"></div>

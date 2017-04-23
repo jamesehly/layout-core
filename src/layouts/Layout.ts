@@ -10,7 +10,7 @@ import { Element } from '../elements/Element';
 export abstract class Layout implements IDrawable {
 
     private _element: Element;
-    private _elements: {[id: string]: Element};
+    private _elements: { [id: string]: Element };
 
     constructor(element: Element) {
         this._element = element;
@@ -27,6 +27,16 @@ export abstract class Layout implements IDrawable {
 
     get element(): Element {
         return this._element;
+    }
+
+    get depth(): number {
+        let depth = 0;
+        let element = this.element.element;
+        while (element.parentElement) {
+            element = element.parentElement;
+            depth++;
+        }
+        return depth;
     }
 
     abstract draw(): void;

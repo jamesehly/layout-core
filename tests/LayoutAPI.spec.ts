@@ -10,7 +10,7 @@ describe('Api Unit Tests', () => {
         layout = new Api();
         let fixture = `
         <div id="parent-element" style="height:1000px;width:500px">
-            <div id='layout-element'>
+            <div id='layout-element' data-layout="HorizontalLayout">
                 <div data-size="200px"></div>
                 <div></div>
                 <div data-size="200px"></div>
@@ -48,6 +48,12 @@ describe('Api Unit Tests', () => {
         layout.add('layout-element', "VerticalLayout", { anything: 'test' });
         expect(layout.layouts.length).toBe(1);
         expect(layout.layouts[0] instanceof VerticalLayout).toBeTruthy();
+    })
+
+    it('should add a horizontal layout when init is called', () => {
+        layout.init();
+        expect(layout.layouts.length).toBe(1);
+        expect(layout.layouts[0] instanceof HorizontalLayout).toBeTruthy();
     })
 
     it('should throw for a layout type that does not exist', () => {

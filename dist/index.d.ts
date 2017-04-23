@@ -8,6 +8,8 @@ export declare class Api {
     readonly layouts: Array<Layout>;
     start(): void;
     stop(): void;
+    init(disableStart?: boolean): void;
+    order(): void;
     reset(): void;
     add(identifier: string, type?: string, options?: any): void;
     get(identifier: string): Layout;

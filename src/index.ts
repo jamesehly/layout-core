@@ -18,7 +18,7 @@ import { Orientation } from './entities/IOriented';
  * and its immediate children.  This can be any type of tag element, but is 
  * typically div tags:
  * 
- * <div id="layout">
+ * <div id="layout" data-layout="HorizontalLayout">
  *   <div id="child-1">...</div>
  *   <div id="child-2">...</div>
  * </div>
@@ -87,7 +87,44 @@ export class Api {
     }
 
     stop() {
+        
+    }
 
+    /**
+     * Initializes and starts the layout core
+     * @param disableStart set to false to disable start
+     */
+    init(disableStart: boolean = false) {
+        let layouts = document.querySelectorAll("[data-layout]");
+        for (let i = 0; i < layouts.length; i++) {
+            let element = layouts[i];
+            let type = element.getAttribute('data-layout');
+            let id = element.id;
+            if (type && id)
+                this.add(element.id, type);
+        }
+
+        this.order();
+
+        if (!disableStart)
+            this.start();
+    }
+
+    /**
+     * Order the layouts so that they are drawn from the outside in
+     */
+    order() {
+        this._layouts.sort((layoutA, layoutB) => {
+            if (layoutA.depth < layoutB.depth) {
+                return -1;
+            }
+            if (layoutA.depth === layoutB.depth) {
+                return 0;
+            }
+            if (layoutA.depth > layoutB.depth) {
+                return 1;
+            }
+        })
     }
 
     /**
@@ -200,7 +237,7 @@ export class Api {
         }
 
         // store the current values
-        let elementStore:{[id: string]: Array<string>} = {};
+        let elementStore: { [id: string]: Array<string> } = {};
         for (let el of changedElements) {
             elementStore[el.id] = [el.height, el.width];
         }
@@ -263,12 +300,12 @@ export class Api {
             throw Error(`Error closing element: element does not have an orientation.`);
 
         if (element.orientation === Orientation.Horizontal) {
-            this.set(identifier, 'width', "0px"); 
+            this.set(identifier, 'width', "0px");
         } else if (element.orientation === Orientation.Vertical) {
             this.set(identifier, 'height', "0px");
         }
         return this.animate(duration)
-    } 
+    }
 }
 
 // Elements

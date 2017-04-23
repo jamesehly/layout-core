@@ -9,6 +9,7 @@ export declare abstract class Layout implements IDrawable {
         [id: string]: Element;
     };
     readonly element: Element;
+    readonly depth: number;
     abstract draw(): void;
     abstract setup(): void;
 }
