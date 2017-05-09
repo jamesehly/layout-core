@@ -189,4 +189,35 @@ describe('Element Unit Tests', () => {
         expect(element.virtual.overflow).toBe(undefined);
         expect(element.overflow).toBe('visible');
     })
+
+    it('should return the float with the float getter', () => {
+        // Actual overflow is nothing by default
+        expect(element.float).toBe('');
+        element.draw();
+        // After drawing it is nothing by default
+        expect(element.float).toBe('');
+    })
+
+    it('should draw the element float to all possible css float values', () => {
+        element.virtual.float = "left";
+        element.draw();
+        expect(element.float).toBe('left');
+        element.virtual.float = "right";
+        element.draw();
+        expect(element.float).toBe('right');
+        element.virtual.float = "none";
+        element.draw();
+        expect(element.float).toBe('none');
+        element.virtual.float = "inherit";
+        element.draw();
+        expect(element.float).toBe('inherit');
+        element.virtual.float = "initial";
+        element.draw();
+        expect(element.float).toBe('initial');
+    })
+
+    it('should throw on an float value that is not a official value', () => {
+        element.virtual.float = "asdf"
+        expect(() => { element.draw() }).toThrow();
+    })
 })
